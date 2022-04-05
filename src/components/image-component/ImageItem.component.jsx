@@ -3,6 +3,7 @@ import Alert from '../utility/Alert.component'
 import './ImageItem.styles.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios';
 
 const AudioItem = () => {
   const imageFileInput = useRef(null);
@@ -18,7 +19,13 @@ const AudioItem = () => {
     audioPath: '',
     imageVideoPath: ''
   })
+  let formData = new FormData();
 
+
+  // to set the input event to be trigerred on click of the buttons
+
+
+  //for removing the prompt after 1 second
   useEffect(() => {
     const timeout = setTimeout(() => {
       setPrompt({ show: false })
@@ -27,24 +34,46 @@ const AudioItem = () => {
   }, [prompt])
 
   //delete this finally. Just to confirm state has been updated
-  useEffect(() => { console.log(files); }, [files])
+  useEffect(() => {
+    if (files && files.image) {
+      formData.append("my_file", files.image)
+      // for (var key of formData.entries()) {
+      //   console.log(key[0] + ', ' + key[1]);
+      // }
+      fetch(
+        `https://video-editor-api.herokuapp.com/upload_file`, {
+        method: "POST",
+        body: JSON.stringify(formData)
+      }).then((res) => {
+        console.log(res.data);
+        setFilePath(() => { })
+      }).catch((err) => {
+        console.log(err.message);
+      });
+
+    }
+
+    if (files && files.transcript) {
+      formData.append("my_file", files.transcript)
+      // for (var key of formData.entries()) {
+      //   console.log(key[0] + ', ' + key[1]);
+      // }
+    }
+
+    console.log(files);
+
+  }, [files])
 
 
-  const handleImageUploadClick = event => {
-    imageFileInput.current.click();
-  };
-  const handleTranscriptUploadClick = event => {
-    transcriptFileInput.current.click();
-  };
 
   const selectImageHandler = event => {
     const file = event.target.files[0]
     setFiles(prevFiles => ({ ...prevFiles, image: file.name }))
     setPrompt({ show: true, message: "Image uploaded successfully" })
+    console.log(file.name);
 
 
   }
-
   const selectTranscriptHandler = event => {
     const file = event.target.files[0]
     setFiles(prevFiles => ({ ...prevFiles, transcript: file.name }))
@@ -52,8 +81,13 @@ const AudioItem = () => {
 
   }
 
+  const handleImageUploadClick = event => {
+    imageFileInput.current.click();
 
-
+  };
+  const handleTranscriptUploadClick = event => {
+    transcriptFileInput.current.click();
+  };
 
   return (
     <div className='container'>
