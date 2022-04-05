@@ -3,11 +3,15 @@
 Feedback and questions are welcome!
 
 
-**The live project can be found at []()**
+**The live project can be found at [Video Editor](https://video-editor-pi.vercel.app/)**
 ## Tech/framework used
 ReactJS
 NanoID
 Axios
+
+## Problems Encountered
+Anytime I called the **`/upload_file`** endpoint, it alwaays returned returned '400'. This made me unable to use the file path i was supposed to get from the request to perform other operations. However, I made the ui exactly as functional as the sample [give to me here](https://mythousandapp.herokuapp.com/)
+
 
 ## Installation
 

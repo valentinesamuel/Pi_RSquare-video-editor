@@ -14,6 +14,12 @@
       border: 1px solid black;
       height: 100px;
       width: 100px;
+      transition: .5s;
+      
+      &:hover {
+            box-shadow: rgba(0, 0, 0, 0.182) 0px 20px 25px -5px,
+                  rgba(0, 0, 0, 0.182) 0px 10px 10px -5px;
+      }
 }
 
 .file-input {
@@ -29,6 +35,12 @@
       align-items: center;
       background-position: center;
       background-size: contain;
+      transition: .5s; 
+
+      &:hover{
+            box-shadow: rgba(0, 0, 0, 0.182) 0px 20px 25px -5px,
+            rgba(0, 0, 0, 0.182) 0px 10px 10px -5px;
+      }
 }
 
 .btn {
@@ -36,10 +48,12 @@
       border-radius: 5px;
       border: none;
       color: white;
+      transition: .5s;
       cursor: pointer;
       background-color: #373030;
 
       &:hover {
+            transform: translateY(5px);
             background-color: #959595;
       }
 }
