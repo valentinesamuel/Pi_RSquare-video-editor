@@ -4,10 +4,15 @@ import VideoItem from './components/video-component/VideoItem.component';
 
 function App() {
   return (
-    <div className="App">
-      <ImageItem />
-      <VideoItem />
-    </div>
+    <>
+      <nav className='navbar'>
+        <h3>Video Editor</h3>
+      </nav>
+      <div className="App">
+        <ImageItem />
+        <VideoItem />
+      </div>
+    </>
   );
 }
 
