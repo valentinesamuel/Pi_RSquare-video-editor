@@ -1,4 +1,4 @@
-# DevProjects - Random color palette generator web app
+# Video Editor 
 
 Feedback and questions are welcome!
 
